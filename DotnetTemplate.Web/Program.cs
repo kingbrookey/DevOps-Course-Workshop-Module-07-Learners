@@ -32,7 +32,7 @@ namespace DotnetTemplate.Web
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder => 
                 {
-                    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+                    var port = Environment.GetEnvironmentVariable("PORT") ?? "5001";
                     webBuilder.UseStartup<Startup>().UseUrls("http://*:" + port);
                 });
         }
