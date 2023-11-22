@@ -1,5 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'mcr.microsoft.com/dotnet/sdk:7.0'
+        }
+    }
+
+    environment {
+        DOTNET_CLI_HOME = "/tmp/dotnet_cli_home"
+        XDG_DATA_HOME = "/tmp"
+    }
 
     stages {
         stage('Build and test') {
@@ -10,24 +19,16 @@ pipeline {
                     // Build Csharp code
                     sh 'dotnet build'
 
-                    // Build TypeScript code
+                    // Build TypeScript code and run TypeScript tests
                     dir('./DotnetTemplate.Web') {
                         sh 'npm install'
                         sh 'npm run build'
+                        sh 'npm test'
+                        sh 'npm run lint'
                     }
 
                     // Run Csharp tests
                     sh 'dotnet test'
-
-                    // Run TypeScript tests
-                    dir('./DotnetTemplate.Web') {
-                        sh 'npm t'
-                    }
-
-                    // Run TypeScript Linter
-                    dir('./DotnetTemplate.Web') {
-                        sh 'npm run lint'
-                    }
                 }
             }
         }
