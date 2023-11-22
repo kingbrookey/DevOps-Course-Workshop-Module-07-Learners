@@ -9,22 +9,23 @@ jobs:
     - name: Checkout code
     - uses: actions/checkout@v4 # Adds a step to checkout the repository code
 
-    - name: Build C code
-      run: 
-
-    - name: Run C tests
-      run:
-
+    - name: Build Csharp code
+      run: dotnet build
+      
     - name: Build TypeScript code
-      run: 
+      working-directory: ./DotnetTemplate.Web
+      run: npm install
+      run: npm run build
 
-    - name: Run TypeScript Linter
-      run:
+    - name: Run Csharp tests
+      run: dotnet test
 
     - name: Run TypeScript tests
-      run:
+      run: npm t
 
-
+    - name: Run TypeScript Linter
+      working-directory: ./DotnetTemplate.Web
+      run: npm run lint
 
 
   
