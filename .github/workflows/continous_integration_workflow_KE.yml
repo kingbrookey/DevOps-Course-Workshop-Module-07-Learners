@@ -6,4 +6,25 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
+    - name: Checkout code
     - uses: actions/checkout@v4 # Adds a step to checkout the repository code
+
+    - name: Build C code
+      run: 
+
+    - name: Run C tests
+      run:
+
+    - name: Build TypeScript code
+      run: 
+
+    - name: Run TypeScript Linter
+      run:
+
+    - name: Run TypeScript tests
+      run:
+
+
+
+
+  
